@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Asset {
+  id        Int      @id @default(autoincrement())
+  type      String
+  title     String
+  content   String?
+  tags      String[]
+  metadata  Json
+  published Boolean  @default(false) // ✨ 新增：默认不公开
+  createdAt DateTime @default(now())
+}
